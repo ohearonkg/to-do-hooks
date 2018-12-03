@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ITodoItem {
+export interface IToDo {
   /**
    * The id for this to do
    */
@@ -10,16 +10,18 @@ interface ITodoItem {
    * Text to be displayed
    */
   text: string;
+}
 
+export interface IToDoItem extends IToDo {
   /**
    * Function to be called
    * when the user clicks upon
    * this item
    */
-  onClickFunction: () => void;
+  onClickFunction: (toDoId: string) => void;
 }
 
-const ToDoItem: React.SFC<ITodoItem> = ({ text, onClickFunction, id }) => (
+const ToDoItem: React.SFC<IToDoItem> = ({ text, onClickFunction, id }) => (
   <div onClick={() => onClickFunction(id)}>{text}</div>
 );
 
