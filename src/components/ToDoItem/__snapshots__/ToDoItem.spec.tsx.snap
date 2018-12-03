@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`To Do Item Should match its snapshot 1`] = `
-<div>
+<DocumentFragment>
   <div>
     ABC
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -25,8 +25,8 @@ describe("To Do Item", () => {
    * Snapshot
    */
   it("Should match its snapshot", () => {
-    const { container } = render(<ToDoItem {...sampleProps} />);
-    expect(container).toMatchSnapshot();
+    const { asFragment } = render(<ToDoItem {...sampleProps} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   /**
@@ -42,7 +42,7 @@ describe("To Do Item", () => {
    */
   it("Should call its the function passed to its onClickFunction when clicked", () => {
     const sampleFunction = jest.fn();
-    const altProps = { ...sampleProps, onClicFunction: sampleFunction };
+    const altProps = { ...sampleProps, onClickFunction: sampleFunction };
     const { getByText } = render(<ToDoItem {...altProps} />);
     fireEvent.click(getByText(sampleText));
     expect(sampleFunction).toHaveBeenCalledTimes(1);
@@ -50,9 +50,9 @@ describe("To Do Item", () => {
 
   it("Should call its the function passed to its onClickFunction with this items id", () => {
     const sampleFunction = jest.fn();
-    const altProps = { ...sampleProps, onClicFunction: sampleFunction };
+    const altProps = { ...sampleProps, onClickFunction: sampleFunction };
     const { getByText } = render(<ToDoItem {...altProps} />);
     fireEvent.click(getByText(sampleText));
-    expect(sampleFunction).toHaveBeenCalledWith();
+    expect(sampleFunction).toHaveBeenCalledWith(sampleID);
   });
 });
