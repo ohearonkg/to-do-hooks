@@ -2,8 +2,8 @@
 
 exports[`To Do Item Should match its snapshot 1`] = `
 <div>
-  <h1>
-    To do
-  </h1>
+  <div>
+    ABC
+  </div>
 </div>
 `;

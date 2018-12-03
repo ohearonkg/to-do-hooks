@@ -1,3 +1,12 @@
 import React from "react";
 
-export default () => <h1>To do</h1>;
+interface ITodoItem {
+  /**
+   * Text to be displayed
+   */
+  text: string;
+}
+
+const ToDoItem: React.SFC<ITodoItem> = ({ text }) => <div>{text}</div>;
+
+export default ToDoItem;
