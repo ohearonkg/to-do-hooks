@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 
-interface ICreationForm {
+interface ICreationFormProps {
   /**
    * Function to be called
    * when the user submits
@@ -9,37 +9,51 @@ interface ICreationForm {
   onSubmitFunction: (toDoText: string) => void;
 }
 
-const CreationForm: React.SFC<ICreationForm> = ({ onSubmitFunction }) => {
+interface ICreationFormState {
   /**
-   * The value of the form, and appropriate
-   * function to update
+   * Current value of the input
    */
-  const [text, setText] = useState("");
+  inputValue: string;
+}
+
+export default class CreationForm extends React.Component<
+  ICreationFormProps,
+  ICreationFormState
+> {
+  public state = {
+    inputValue: ""
+  };
 
   /**
    * Handling updating use the event provided
    * via the change handler of the input
    */
-  const handleTextUpdate = (event: ChangeEvent<HTMLInputElement>) =>
-    setText(event.target.value);
+  public handleTextUpdate = (event: ChangeEvent<HTMLInputElement>) =>
+    this.setState({ inputValue: event.target.value });
 
   /**
    * Submitting our form
    */
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  public handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const { onSubmitFunction } = this.props;
     event.preventDefault();
-    onSubmitFunction(text);
+    onSubmitFunction(this.state.inputValue);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        To Do:
-        <input type="text" value={text} onChange={handleTextUpdate} />
-      </label>
-      <button type="submit">ADD</button>
-    </form>
-  );
-};
-
-export default CreationForm;
+  public render() {
+    const { inputValue } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          To Do:
+          <input
+            type="text"
+            value={inputValue}
+            onChange={this.handleTextUpdate}
+          />
+        </label>
+        <button type="submit">ADD</button>
+      </form>
+    );
+  }
+}
