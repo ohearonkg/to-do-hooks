@@ -16,6 +16,8 @@ class App extends Component {
           ]}
           itemSelectedFunction={() => ({})}
         />
+
+        <h2> Done </h2>
       </div>
     );
   }
