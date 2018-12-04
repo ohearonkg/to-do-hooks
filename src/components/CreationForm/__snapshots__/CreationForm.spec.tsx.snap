@@ -2,8 +2,19 @@
 
 exports[`Creation Form Should match its snapshot 1`] = `
 <DocumentFragment>
-  <h1>
-     Hello 
-  </h1>
+  <form>
+    <label>
+      To Do:
+      <input
+        type="text"
+        value=""
+      />
+    </label>
+    <button
+      type="submit"
+    >
+      ADD
+    </button>
+  </form>
 </DocumentFragment>
 `;
