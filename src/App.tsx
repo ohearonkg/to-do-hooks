@@ -1,22 +1,19 @@
 import React from "react";
-import CreationForm from "./components/CreationForm/CreationForm";
-import ToDoList from "./components/ToDoList/ToDoList";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import ToDoListContainer from "./containers/ToDoList/ToDoListContainer";
+import rootReducer from "./reducers";
+
+const store = createStore(rootReducer);
 
 export default () => {
   return (
-    <div>
-      <h1> To Do List </h1>
-      <CreationForm onSubmitFunction={() => ({})} />
-      <ToDoList
-        toDos={[
-          {
-            id: "a",
-            text: "Buy Milk"
-          }
-        ]}
-        itemSelectedFunction={() => ({})}
-      />
-      <h2> Done </h2>
-    </div>
+    <Provider store={store}>
+      <div>
+        <h1> To Do List </h1>
+        <ToDoListContainer />
+        <h2> Done </h2>
+      </div>
+    </Provider>
   );
 };
