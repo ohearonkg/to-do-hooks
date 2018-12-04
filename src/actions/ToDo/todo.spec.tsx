@@ -8,10 +8,14 @@ describe("To Do Actions", () => {
    */
   it("Should dispatch an ADD_TO_DO action with the corresponding text of the to do item", () => {
     const sampleToDoText = "SAMPLE TEXT";
-    const sampleAction = actions.addToDo(sampleToDoText);
+    const sampleId = "123";
+    const sampleAction = actions.addToDo(sampleId, sampleToDoText);
     expect(sampleAction).toMatchObject({
       type: ADD_TO_DO,
-      payload: sampleToDoText
+      payload: {
+        id: sampleId,
+        text: sampleToDoText
+      }
     });
   });
 });

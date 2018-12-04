@@ -27,9 +27,10 @@ export default (
 ) => {
   switch (action.type) {
     case ADD_TO_DO:
+      const { id, text } = action.payload;
       return {
         ...state,
-        toDos: [...state.toDos, { id: "a", text: action.payload }]
+        toDos: [...state.toDos, { id, text }]
       };
     default:
       return state;

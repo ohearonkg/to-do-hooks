@@ -21,11 +21,12 @@ describe("To Do Reducer", () => {
    * Adding to do
    */
   it("Should correctly add a to do", () => {
+    const sampleId = "123";
     const sampleToDoText = "BUY MILK";
-    const action = addToDo(sampleToDoText);
+    const action = addToDo(sampleId, sampleToDoText);
     const state = toDoReducer(initialState, action);
     expect(state).toMatchObject({
-      toDos: [{ id: "a", text: sampleToDoText }]
+      toDos: [{ id: sampleId, text: sampleToDoText }]
     });
   });
 });
