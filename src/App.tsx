@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import ToDoListContainer from "./containers/ToDoList/ToDoListContainer";
+import ToDoListContainer from "./containers/ToDoListContainer/ToDoListContainer";
 import rootReducer from "./reducers";
 
 const store = createStore(rootReducer);
