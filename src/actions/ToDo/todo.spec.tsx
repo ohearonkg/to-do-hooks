@@ -1,0 +1,17 @@
+import * as actions from "./todo";
+
+import { ADD_TO_DO } from "./constants";
+
+describe("To Do Actions", () => {
+  /**
+   * Adding to do action
+   */
+  it("Should dispatch an ADD_TO_DO action with the corresponding text of the to do item", () => {
+    const sampleToDoText = "SAMPLE TEXT";
+    const sampleAction = actions.addToDo(sampleToDoText);
+    expect(sampleAction).toMatchObject({
+      type: ADD_TO_DO,
+      payload: sampleToDoText
+    });
+  });
+});
