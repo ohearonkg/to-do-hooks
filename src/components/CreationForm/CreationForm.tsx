@@ -38,6 +38,7 @@ export default class CreationForm extends React.Component<
     const { onSubmitFunction } = this.props;
     event.preventDefault();
     onSubmitFunction(this.state.inputValue);
+    this.setState({ inputValue: "" });
   };
 
   public render() {

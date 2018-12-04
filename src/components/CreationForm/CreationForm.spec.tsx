@@ -1,7 +1,12 @@
 import "jest-dom/extend-expect";
 
 import React, { ChangeEvent } from "react";
-import { cleanup, fireEvent, render } from "react-testing-library";
+import {
+  cleanup,
+  fireEvent,
+  queryAllByText,
+  render
+} from "react-testing-library";
 
 import CreationForm from "./CreationForm";
 
@@ -36,7 +41,27 @@ describe("Creation Form", () => {
   it("Should pass the text from its input to its onSubmitFunction when called", () => {
     const sampleToDoText = "BUY MILK";
     const sampleFunction = jest.fn();
-    const sampleEvent = new Event("change");
+
+    const { getByText, getByLabelText } = render(
+      <CreationForm onSubmitFunction={sampleFunction} />
+    );
+
+    fireEvent.change(getByLabelText(/To Do/i), {
+      target: {
+        value: sampleToDoText
+      }
+    });
+
+    fireEvent.click(getByText("ADD"));
+    expect(sampleFunction).toHaveBeenCalledWith(sampleToDoText);
+  });
+
+  /**
+   * Should reset its state after submitted
+   */
+  it("Should clear its input after adding a to do", () => {
+    const sampleToDoText = "BUY MILK";
+    const sampleFunction = () => ({});
 
     const { getByText, getByLabelText, debug } = render(
       <CreationForm onSubmitFunction={sampleFunction} />
@@ -49,6 +74,7 @@ describe("Creation Form", () => {
     });
 
     fireEvent.click(getByText("ADD"));
-    expect(sampleFunction).toHaveBeenCalledWith(sampleToDoText);
+
+    expect((getByLabelText(/To Do/i) as HTMLInputElement).value).toEqual("");
   });
 });
